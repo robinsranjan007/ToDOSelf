@@ -1,0 +1,39 @@
+<header>
+    <h1>Post Your Blog</h1>
+  </header>
+
+<div class="card-container">
+    <div class="card" *ngFor="let item of fandetails">
+      <div class="property-name">{{item.firstName}} {{item.lastName}}</div>
+      <div class="country">{{item.country}}</div>
+      <div class="title">{{item.title}}</div>
+      <div class="description">{{item.description}}</div>
+      <div class="delete"  (click)="deleteUser(item.id)"><button>delete</button></div>
+      <div class="details" (click)="detail(item.id)">Details</div>
+    </div>
+    
+    <div class="larger-card"  *ngIf="showdetails &&singleDetails">
+
+            <div class=""><h4>firstName: {{singleDetails.firstName}}</h4></div>
+            <div class=" "><h4>lastName: {{singleDetails.lastName}}</h4></div>
+            <div class=" "><h4>title: {{singleDetails.title}}</h4></div>
+            <div class=" ">Description: {{singleDetails.description}}</div>
+            <div class=" close" (click)="hideDetail()">Close</div>
+
+      </div>
+
+    <div class="btn">
+        <button (click)="showtable()">click to add task</button>
+    </div>
+
+  <div *ngIf="fandetails.length<1" class="empty-box">
+    <h1>nothing to display please click to add</h1>
+  </div>  
+  </div>
+  
+ <app-fanform 
+ *ngIf="showform" 
+ (submitdata)="fandata($event)"
+  (closeform)="closeform($event)"></app-fanform>
+
+ 

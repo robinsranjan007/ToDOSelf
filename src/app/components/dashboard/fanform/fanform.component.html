@@ -1,0 +1,88 @@
+
+<div class="form-content">
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+          <form  [formGroup]="myform" (ngSubmit)="submitted()">
+              <div class="formbold-input-flex">
+                <div>
+                    <label for="firstname" class="formbold-form-label"> First name </label>
+                    <input
+                    type="text"    
+                    id="firstname"
+                    placeholder="Jane"
+                    class="formbold-form-input"
+                    [formControlName]="'firstName'"
+                    />
+                    <small style="color:  blue;" *ngIf="myform.get('firstName')?.touched && myform.get('firstName')?.invalid && !myform.get('firstName')?.errors?.['minlength']">please ener the name</small>
+                    <small style="color: blue;" *ngIf="myform.get('firstName')?.touched && myform.get('firstName')?.invalid && myform.get('firstName')?.errors?.['minlength']">not less then 5 characters</small>
+                </div>
+                <div>
+                    <label for="lastname" class="formbold-form-label"> Last name </label>
+                    <input
+                    type="text"
+                    id="lastname"
+                    placeholder="Cooper"
+                    class="formbold-form-input"
+                    [formControlName]="'lastName'"
+                    />
+                    <small style="color:  blue;" *ngIf="myform.get(' lastName')?.touched && myform.get('lastName')?.invalid && !myform.get('lastName')?.errors?.['minlength']">please ener the name</small>
+                    <small style="color: blue;" *ngIf="myform.get('lastName')?.touched && myform.get('lastName')?.invalid && myform.get('lastName')?.errors?.['minlength']">not less then 5 characters</small>
+ 
+                </div>
+              </div>
+              <div class="formbold-input-flex">
+                <div>
+                    <label for="title" class="formbold-form-label"> title </label>
+                    <input
+                    type="text"
+                    id="title"
+                    placeholder="One in the world"
+                    class="formbold-form-input"
+                    [formControlName]="'title'"
+                    />
+                    <small style="color:  blue;" *ngIf="myform.get('title')?.touched && myform.get('title')?.invalid && !myform.get('title')?.errors?.['maxlength']">please ener the title</small>
+                    <small style="color: blue;" *ngIf="myform.get('title')?.touched && myform.get('title')?.invalid && myform.get('title')?.errors?.['maxlength']">not more then 10 characters</small>
+                </div>
+                <div>
+                    <label for="country" class="formbold-form-label">Country </label>
+                    <input
+                    type="text"
+                    id="country"
+                    placeholder="India"
+                    class="formbold-form-input"
+                    [formControlName]="'country'"
+                    />
+                    <small *ngIf="myform.get('country')?.touched && myform.get('country')?.invalid">please enter the country name</small>
+                </div>
+              </div>
+              
+              <div>
+                  <label for="message" class="formbold-form-label"> Message </label>
+                  <textarea
+                      rows="6"
+                      #message
+                      placeholder="Type your message"
+                      class="formbold-form-input"
+                      [formControlName]="'description'"
+                      max="40"
+                  ></textarea>
+                  <small>{{message.value.length}}/40 </small>
+                  <small style="margin: 2px;color: blue;"  *ngIf="myform.get('description')?.touched && myform.get('description')?.invalid && ! myform.get('description')?.errors?.['maxlength']">plese enter some message</small>
+                  <small style="margin: 2px;color: blue;"   *ngIf="myform.get('description')?.touched && myform.get('description')?.invalid && myform.get('description')?.errors?.['maxlength']">not more than 40 characters</small>
+              </div>
+      
+              <button [disabled]="myform.invalid" class="formbold-btn">
+                  Send Message
+              </button>
+              
+          </form>
+        </div>
+      </div>
+
+       <div class="cross">
+        <button (click)="terminateform()">X</button>
+       </div>
+     
+</div>
+
+ 
